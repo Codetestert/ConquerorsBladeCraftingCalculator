@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConquerorsBladeCraftingCalculator", "ConquerorsBladeCraftingCalculator\ConquerorsBladeCraftingCalculator.csproj", "{76F0F520-F2DE-4BD8-9DD4-6114341FD023}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76F0F520-F2DE-4BD8-9DD4-6114341FD023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76F0F520-F2DE-4BD8-9DD4-6114341FD023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76F0F520-F2DE-4BD8-9DD4-6114341FD023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76F0F520-F2DE-4BD8-9DD4-6114341FD023}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3DDC6B0-14DE-449D-B849-A9A24D743BD3}
+	EndGlobalSection
+EndGlobal
