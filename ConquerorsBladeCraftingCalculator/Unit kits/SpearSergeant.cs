@@ -4,17 +4,17 @@ using ConquerorsBladeCraftingCalculator.Materials.Iron;
 using ConquerorsBladeCraftingCalculator.Materials.Leather;
 using ConquerorsBladeCraftingCalculator.Materials.Lumber;
 
-namespace ConquerorsBladeCraftingCalculator.Models
+namespace ConquerorsBladeCraftingCalculator.UnitKits
 {
-    internal class SpearSergeant : IUnitKit
+    public class SpearSergeant : UnitKit
     {
-        public IReadOnlyDictionary<Material, int> RequiredMaterials => new Dictionary<Material, int>()
+        public IReadOnlyDictionary<Material, int> RequiredMaterials { get; } = new Dictionary<Material, int>()
         {
             {new FinishedLeather(), 3},
             {new CompositeWood(), 3},
             {new PureIron(), 4}
         };
-        public Rarity Rarity => Rarity.Epic;
-        public int ResupplyCost => 3371;
+        public Rarity Rarity { get; } = Rarity.Epic;
+        public int ResupplyCost { get; } = 3371;
     }
 }

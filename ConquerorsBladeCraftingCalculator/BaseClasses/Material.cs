@@ -2,12 +2,12 @@
 
 namespace ConquerorsBladeCraftingCalculator.BaseClasses
 {
-    public class Material
+    public abstract class Material
     {
-        IReadOnlyDictionary<IResource, int> RequiredResources { get; } //TODO If Material is used as interface, this needs to be fetched from child of child
-        Rarity Rarity { get; } //TODO If Material is used as interface, this needs to be fetched from child of child
+       public IReadOnlyDictionary<IResource, int> RequiredResources { get; }
+       public Rarity Rarity { get; }
 
-        public IReadOnlyDictionary<Rarity, int> CraftingCost => new Dictionary<Rarity, int>() //TODO Now Material can't be an interface, because we want this implementation
+       public IReadOnlyDictionary<Rarity, int> CraftingCost { get; } = new Dictionary<Rarity, int>() //TODO should Material be an interface, and have an abstract class for Rarity? then have Crafting cost as an int on the abstract class, and have each material inherit from rarity and material?
         {
             {Rarity.Legendary, 20 },
             {Rarity.Epic, 20 },

@@ -1,11 +1,11 @@
 ﻿using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources;
+using ConquerorsBladeCraftingCalculator.Resources.Iron;
 
 namespace ConquerorsBladeCraftingCalculator.BaseClasses
 {
     internal class EpicIron : Material
     {
-        public IReadOnlyDictionary<IResource, int> DiscretionaryResources => new Dictionary<IResource, int>()
+        public IReadOnlyDictionary<IResource, int> DiscretionaryResources { get; } = new Dictionary<IResource, int>()
         {
             {new SideriteOre(), 30 },
             {new Magnetite(), 20 },

@@ -1,6 +1,7 @@
 ﻿namespace ConquerorsBladeCraftingCalculator.Interfaces
 {
-    internal interface IResource
-    {
+    public interface IResource
+    {       
+        Rarity Rarity { get; }
     }
 }

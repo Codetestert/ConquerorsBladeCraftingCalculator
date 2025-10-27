@@ -1,6 +1,6 @@
-﻿namespace ConquerorsBladeCraftingCalculator.BaseClasses
+﻿namespace ConquerorsBladeCraftingCalculator.Interfaces
 {   
-        enum Rarity
+        public enum Rarity
         {
             Common,
             Uncommon,

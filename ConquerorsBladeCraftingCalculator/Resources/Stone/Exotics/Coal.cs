@@ -2,7 +2,8 @@
 
 namespace ConquerorsBladeCraftingCalculator.Resources.Stone.Exotics
 {
-    internal class Coal: IResource
+    internal class Coal : IResource
     {
+        public Rarity Rarity { get; } = Rarity.Uncommon;
     }
 }

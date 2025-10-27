@@ -1,16 +1,16 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses;
 using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources;
+using ConquerorsBladeCraftingCalculator.Resources.Hides.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Leather
 {
     internal class FinishedLeather : EpicLeather
     {
-        public IReadOnlyDictionary<IResource, int> RequiredResources => new Dictionary<IResource, int>()
+        public IReadOnlyDictionary<IResource, int> RequiredResources { get; } = new Dictionary<IResource, int>()
         {
             { new BisonHide(), 1 },
             { new Sinews(), 1 } //TODO add DiscretionaryResource from Parent to this dictionary
         };
-        public Rarity Rarity => Rarity.Epic;
+        public Rarity Rarity { get; } = Rarity.Epic;
     }
 }

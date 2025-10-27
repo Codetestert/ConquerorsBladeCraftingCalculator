@@ -1,11 +1,11 @@
 ﻿using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources;
+using ConquerorsBladeCraftingCalculator.Resources.Timber;
 
 namespace ConquerorsBladeCraftingCalculator.BaseClasses
 {
     internal class EpicLumber : Material
     {
-        public IReadOnlyDictionary<IResource, int> DiscretionaryResources => new Dictionary<IResource, int>()
+        public IReadOnlyDictionary<IResource, int> DiscretionaryResources { get; } = new Dictionary<IResource, int>()
         {
             {new PineTimber(), 30 },
             {new AshTimber(), 20 },
