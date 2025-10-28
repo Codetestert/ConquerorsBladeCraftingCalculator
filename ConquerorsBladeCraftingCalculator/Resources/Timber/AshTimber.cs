@@ -2,7 +2,7 @@
 
 namespace ConquerorsBladeCraftingCalculator.Resources.Timber
 {
-    internal class AshTimber : IResource
+    public class AshTimber : Materials.Lumber.Timber
     {
         public Rarity Rarity { get; } = Rarity.Uncommon;
     }
