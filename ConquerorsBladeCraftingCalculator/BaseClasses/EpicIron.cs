@@ -3,8 +3,15 @@ using ConquerorsBladeCraftingCalculator.Resources.Iron;
 
 namespace ConquerorsBladeCraftingCalculator.BaseClasses
 {
-    internal class EpicIron : Material
+    internal class Iron : EpicMaterial
     {
+        private ICollection<Type> AcceptedResources =
+        [
+            typeof(SideriteOre),
+            typeof(Magnetite),
+            typeof(Limonite),
+            typeof(Haematite)
+        ];
         public IReadOnlyDictionary<IResource, int> DiscretionaryResources { get; } = new Dictionary<IResource, int>()
         {
             {new SideriteOre(), 30 },

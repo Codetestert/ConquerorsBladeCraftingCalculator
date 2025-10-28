@@ -1,9 +1,6 @@
-﻿using ConquerorsBladeCraftingCalculator.Interfaces;
-
-namespace ConquerorsBladeCraftingCalculator.Resources.Hides.Exotics
+﻿namespace ConquerorsBladeCraftingCalculator.Resources.Hides.Exotics
 {
-    internal class MountainWolfFur : IResource
+    internal class MountainWolfFur : EpicResource
     {
-        public Rarity Rarity { get; } = Rarity.Epic;
     }
 }
