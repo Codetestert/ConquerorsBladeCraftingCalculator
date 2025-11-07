@@ -1,20 +1,21 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
+using ConquerorsBladeCraftingCalculator.Records;
 using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Fabric
 {
     internal class CheapFabric : RareMaterial
     {
-        public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
+        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; }
 
         public CheapFabric(ICotton cotton)
         {
-            RequiredResources = new Dictionary<IResource, int>()
-            {
-                {cotton, GetResourceQuantity(cotton.Rarity)},
-                {new Flax(), 1}
-            };
+            RequiredResources =
+            [
+                new(cotton, GetResourceQuantity(cotton.Rarity)),
+                new(new Flax(), 1)
+            ];
         }
     }
 }

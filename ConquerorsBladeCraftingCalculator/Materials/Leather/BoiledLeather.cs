@@ -1,20 +1,21 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
+using ConquerorsBladeCraftingCalculator.Records;
 using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Leather
 {
     public class BoiledLeather : EpicMaterial
     {
-        public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
+        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; }
         public BoiledLeather(IHide hide)
         {
-            RequiredResources = new Dictionary<IResource, int>()
-            {
-                {hide, GetResourceQuantity(hide.Rarity)},
-                {new MountainWolfFur(), 1},
-                {new Nitre(), 1}
-            };
+            RequiredResources =
+            [
+                new(hide, GetResourceQuantity(hide.Rarity)),
+                new(new MountainWolfFur(), 1),
+                new(new Nitre(), 1),
+            ];
         }
     }
 }

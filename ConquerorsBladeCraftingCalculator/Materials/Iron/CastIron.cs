@@ -1,19 +1,20 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
+using ConquerorsBladeCraftingCalculator.Records;
 using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Iron
 {
     public class CastIron : RareMaterial
     {
-        public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
+        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; }
         public CastIron(IronOre ironOre)
         {           
-            RequiredResources = new Dictionary<IResource, int>()
-            {
-                {ironOre, GetResourceQuantity(ironOre.Rarity)},
-                {new Calamine(), 1}
-            };
+            RequiredResources =
+            [
+                new(ironOre, GetResourceQuantity(ironOre.Rarity)),
+                new(new Calamine(), 1),
+            ];
         }
     }
 }
