@@ -1,19 +1,16 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Lumber
 {
-    public class CompositeWood : EpicMaterial
+    public class SeasonedWood : UncommonMaterial
     {
         public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
-        public CompositeWood(ITimber timber)
+        public SeasonedWood(ITimber timber)
         {
             RequiredResources = new Dictionary<IResource, int>()
             {
-                {timber, GetResourceQuantity(timber.Rarity)},
-                {new Yew(), 1},
-                {new Coal(), 1}
+                {timber, GetResourceQuantity(timber.Rarity)}
             };
         }
     }

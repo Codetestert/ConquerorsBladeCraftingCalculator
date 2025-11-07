@@ -1,9 +1,9 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 
-namespace ConquerorsBladeCraftingCalculator.Resources.Iron
+namespace ConquerorsBladeCraftingCalculator.Resources.Hides
 {
-    public class Magnetite : UncommonResource, IronOre
+    internal class Goat : RareResource,IHide
     {
     }
 }

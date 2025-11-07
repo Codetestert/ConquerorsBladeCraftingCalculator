@@ -1,9 +1,9 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 
-namespace ConquerorsBladeCraftingCalculator.Resources.Iron
+namespace ConquerorsBladeCraftingCalculator.Resources.Exotics
 {
-    public class Magnetite : UncommonResource, IronOre
+    internal class MountainBauxite : EpicResource, IExotic
     {
     }
 }

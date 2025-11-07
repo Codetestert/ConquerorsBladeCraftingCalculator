@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Resources\Cotton\" />
-    <Folder Include="Resources\Copper\" />
-  </ItemGroup>
-
 </Project>

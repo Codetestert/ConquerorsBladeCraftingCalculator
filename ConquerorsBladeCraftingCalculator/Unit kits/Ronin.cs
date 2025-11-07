@@ -1,22 +1,23 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Materials.Iron;
 using ConquerorsBladeCraftingCalculator.Materials.Leather;
-using ConquerorsBladeCraftingCalculator.Materials.Lumber;
+using ConquerorsBladeCraftingCalculator.Materials.Fabric;
 using ConquerorsBladeCraftingCalculator.Resources.Hides;
 using ConquerorsBladeCraftingCalculator.Resources.Iron;
-using ConquerorsBladeCraftingCalculator.Resources.Timber;
+using ConquerorsBladeCraftingCalculator.Resources.Cotton;
 
 namespace ConquerorsBladeCraftingCalculator.UnitKits
 {
-    public class SpearSergeant : EpicUnitKit
+    public class Ronin : EpicUnitKit
     {
         public override IReadOnlyDictionary<Material, int> RequiredMaterials { get; } = new Dictionary<Material, int>()
         {
-            {new FinishedLeather(new Pig()), 3},
-            {new CompositeWood(new Oak()), 3},
-            {new PureIron(new Siderite()), 4}
+            {new CastIron(new Siderite()), 12},
+            {new CheapFabric(new Coarse()), 8},
+            {new TreatedLeather(new Goat()), 12}
         };
-        public override int ResupplyCost { get; } = 3371;
+        public override int ResupplyCost { get; } = 3712;
+        public override int CraftingCost { get; } = 100;
     }
 
 }

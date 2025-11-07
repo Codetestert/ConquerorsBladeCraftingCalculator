@@ -1,9 +1,9 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 
-namespace ConquerorsBladeCraftingCalculator.Resources.Iron
+namespace ConquerorsBladeCraftingCalculator.Resources.Cotton
 {
-    public class Magnetite : UncommonResource, IronOre
+    internal class Coarse : UncommonResource, ICotton
     {
     }
 }

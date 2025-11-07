@@ -1,18 +1,16 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
-namespace ConquerorsBladeCraftingCalculator.Materials.Leather
+namespace ConquerorsBladeCraftingCalculator.Materials.Iron
 {
-    public class TreatedLeather : RareMaterial
+    public class RawIron : UncommonMaterial
     {
         public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
-        public TreatedLeather(IHide hide)
+        public RawIron(IronOre ironOre)
         {
             RequiredResources = new Dictionary<IResource, int>()
             {
-                {hide, GetResourceQuantity(hide.Rarity)},
-                {new Shellac(), 1}
+                {ironOre, GetResourceQuantity(ironOre.Rarity)}
             };
         }
     }

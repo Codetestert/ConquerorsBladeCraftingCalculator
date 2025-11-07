@@ -2,18 +2,18 @@
 using ConquerorsBladeCraftingCalculator.Interfaces;
 using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
-namespace ConquerorsBladeCraftingCalculator.Materials.Leather
+namespace ConquerorsBladeCraftingCalculator.Materials.Fabric
 {
-    public class BoiledLeather : EpicMaterial
+    internal class CheapFabric : RareMaterial
     {
         public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
-        public BoiledLeather(IHide hide)
+
+        public CheapFabric(ICotton cotton)
         {
             RequiredResources = new Dictionary<IResource, int>()
             {
-                {hide, GetResourceQuantity(hide.Rarity)},
-                {new MountainWolfFur(), 1},
-                {new Nitre(), 1}
+                {cotton, GetResourceQuantity(cotton.Rarity)},
+                {new Flax(), 1}
             };
         }
     }

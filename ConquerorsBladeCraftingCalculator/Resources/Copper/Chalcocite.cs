@@ -1,9 +1,11 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 
-namespace ConquerorsBladeCraftingCalculator.Resources.Iron
+namespace ConquerorsBladeCraftingCalculator.Resources.Copper
 {
-    public class Magnetite : UncommonResource, IronOre
+    internal class Chalcocite : UncommonResource, ICopperOre
     {
     }
 }
+
+

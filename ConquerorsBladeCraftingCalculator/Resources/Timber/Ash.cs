@@ -1,9 +1,9 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 
-namespace ConquerorsBladeCraftingCalculator.Resources.Iron
+namespace ConquerorsBladeCraftingCalculator.Resources.Timber
 {
-    public class Magnetite : UncommonResource, IronOre
+    public class Ash : UncommonResource, ITimber
     {
     }
 }

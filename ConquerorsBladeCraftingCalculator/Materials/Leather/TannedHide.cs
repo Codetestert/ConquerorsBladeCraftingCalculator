@@ -1,14 +1,17 @@
-﻿using ConquerorsBladeCraftingCalculator.BaseClasses;
+﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Leather
 {
-    internal class TannedHide : UncommonLeather
+    public class TannedHide : UncommonMaterial
     {
-        public IReadOnlyDictionary<IResource, int> RequiredResources { get; } = new Dictionary<IResource, int>()
+        public override IReadOnlyDictionary<IResource, int> RequiredResources { get; }
+        public TannedHide(IHide hide)
         {
-            //TODO add DiscretionaryResource from Parent to this dictionary
-        };
-        public Rarity Rarity { get; } = Rarity.Uncommon;
+            RequiredResources = new Dictionary<IResource, int>()
+            {
+                {hide, GetResourceQuantity(hide.Rarity)}
+            };
+        }
     }
 }

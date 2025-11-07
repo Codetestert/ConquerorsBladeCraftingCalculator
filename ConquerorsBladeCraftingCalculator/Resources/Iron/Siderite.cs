@@ -3,7 +3,7 @@ using ConquerorsBladeCraftingCalculator.Interfaces;
 
 namespace ConquerorsBladeCraftingCalculator.Resources.Iron
 {
-    public class Magnetite : UncommonResource, IronOre
+    internal class Siderite : CommonResource, IronOre
     {
     }
 }
