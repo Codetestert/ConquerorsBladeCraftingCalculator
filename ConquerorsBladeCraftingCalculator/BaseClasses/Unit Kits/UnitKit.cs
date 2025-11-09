@@ -1,9 +1,10 @@
 ﻿using ConquerorsBladeCraftingCalculator.Enums;
+using ConquerorsBladeCraftingCalculator.Interfaces;
 using ConquerorsBladeCraftingCalculator.Records;
 
 namespace ConquerorsBladeCraftingCalculator.BaseClasses
 {
-    public abstract class UnitKit
+    public abstract class UnitKit : ITradable
     {
         public abstract IReadOnlyList<MaterialQuantity> RequiredMaterials { get; } //TODO some kits require exotic resources, Outriders requires resources exclusively
         public abstract Rarity Rarity { get; }

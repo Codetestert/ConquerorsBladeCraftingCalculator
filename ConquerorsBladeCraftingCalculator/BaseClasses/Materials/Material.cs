@@ -1,11 +1,12 @@
 ﻿using ConquerorsBladeCraftingCalculator.Enums;
+using ConquerorsBladeCraftingCalculator.Interfaces;
 using ConquerorsBladeCraftingCalculator.Records;
 namespace ConquerorsBladeCraftingCalculator.BaseClasses.Materials
 {
-    public abstract class Material
+    public abstract class Material : ITradable
     {
         public abstract Rarity Rarity { get; }
-        public abstract int CraftingCost { get; }
+        public abstract int RefiningCost { get; }
         public abstract IReadOnlyList<ResourceQuantity> RequiredResources { get; }
         public override string ToString()
         {
@@ -14,7 +15,7 @@ namespace ConquerorsBladeCraftingCalculator.BaseClasses.Materials
             string[] properties =
                 [
                     $"Name material: {GetType().Name}",
-                    $"Crafting cost: {CraftingCost}",
+                    $"Refining cost: {RefiningCost}",
                     $"Rarity: {Rarity}",
                     string.Join(Environment.NewLine, requiredResources),
                 ];

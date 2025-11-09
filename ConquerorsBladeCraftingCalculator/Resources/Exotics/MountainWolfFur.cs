@@ -3,7 +3,7 @@ using ConquerorsBladeCraftingCalculator.Interfaces;
 
 namespace ConquerorsBladeCraftingCalculator.Resources.Exotics
 {
-    internal class MountainWolfFur : EpicResource, IExotic
+    public class MountainWolfFur : EpicResource, IExotic
     {
     }
 }

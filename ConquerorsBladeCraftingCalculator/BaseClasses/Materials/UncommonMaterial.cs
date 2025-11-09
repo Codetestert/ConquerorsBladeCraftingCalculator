@@ -2,10 +2,10 @@
 
 namespace ConquerorsBladeCraftingCalculator.BaseClasses.Materials
 {
-    public abstract class UncommonMaterial : Material //TODO Uncommon generic maken voor T = Material, Resource, UnitKit? 
+    public abstract class UncommonMaterial : Material //TODO make Uncommon generic for T = Material, Resource, UnitKit? 
     {
         public override Rarity Rarity { get; } = Rarity.Uncommon;
-        public override int CraftingCost { get; } = 2;
+        public override int RefiningCost { get; } = 2;
 
         public int GetResourceQuantity(Rarity resourceRarity) => resourceRarity switch
         {

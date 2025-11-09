@@ -1,10 +1,9 @@
 ﻿using ConquerorsBladeCraftingCalculator.Materials.Iron;
 using ConquerorsBladeCraftingCalculator.Materials.Leather;
 using ConquerorsBladeCraftingCalculator.Materials.Copper;
-using ConquerorsBladeCraftingCalculator.Resources.Hides;
-using ConquerorsBladeCraftingCalculator.Resources.Iron;
-using ConquerorsBladeCraftingCalculator.Resources.Copper;
 using ConquerorsBladeCraftingCalculator.Records;
+using ConquerorsBladeCraftingCalculator.Interfaces;
+using Moq;
 
 namespace ConquerorsBladeCraftingCalculator.UnitKits
 {
@@ -12,9 +11,9 @@ namespace ConquerorsBladeCraftingCalculator.UnitKits
     {
         public override IReadOnlyList<MaterialQuantity> RequiredMaterials { get; } =
         [
-            new(new FinishedLeather(new Pig()), 3),
-            new(new RefinedCopper(new Chalcocite()), 4),//TODO pick a random ICopperOre  
-            new(new PureIron(new Siderite()), 4),                      
+            new(new FinishedLeather(It.IsAny<IHide>()), 3),
+            new(new RefinedCopper(It.IsAny<ICopperOre>()), 4),
+            new(new PureIron(It.IsAny<IronOre>()), 4),                      
         ];
         public override int ResupplyCost { get; } = 3371;
     }
