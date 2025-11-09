@@ -1,15 +1,20 @@
-﻿using ConquerorsBladeCraftingCalculator.BaseClasses;
+﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources.Timber.Exotics;
+using ConquerorsBladeCraftingCalculator.Records;
+using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Leather
 {
-    internal class TreatedLeather : RareLeather
+    public class TreatedLeather : RareMaterial
     {
-        public IReadOnlyDictionary<IResource, int> RequiredResources { get; } = new Dictionary<IResource, int>()
+        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; }
+        public TreatedLeather(IHide hide)
         {
-            {new Shellac(), 1} //TODO add DiscretionaryResource from Parent to this dictionary
-        };
-        public Rarity Rarity { get; } = Rarity.Rare;
+            RequiredResources =
+            [
+                new(hide, GetResourceQuantity(hide.Rarity)),
+                new(new Shellac(), 1),
+            ];
+        }
     }
 }

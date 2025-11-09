@@ -1,9 +1,9 @@
-﻿using ConquerorsBladeCraftingCalculator.Interfaces;
+﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
+using ConquerorsBladeCraftingCalculator.Interfaces;
 
 namespace ConquerorsBladeCraftingCalculator.Resources.Iron
 {
-    internal class Magnetite : IResource
+    public class Magnetite : UncommonResource, IronOre
     {
-        public Rarity Rarity { get; } = Rarity.Uncommon;
     }
 }

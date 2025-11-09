@@ -1,17 +1,21 @@
-﻿using ConquerorsBladeCraftingCalculator.BaseClasses;
+﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
 using ConquerorsBladeCraftingCalculator.Interfaces;
-using ConquerorsBladeCraftingCalculator.Resources.Iron.Exotics;
-using ConquerorsBladeCraftingCalculator.Resources.Stone.Exotics;
+using ConquerorsBladeCraftingCalculator.Records;
+using ConquerorsBladeCraftingCalculator.Resources.Exotics;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Iron
 {
-    internal class PureIron : EpicIron
+    public class PureIron : EpicMaterial
     {
-        public IReadOnlyDictionary<IResource, int> RequiredResources { get; } = new Dictionary<IResource, int>()
+        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; }        
+        public PureIron(IronOre ironOre)
         {
-            {new MountainBauxite(), 1},
-            {new Coal(), 1} //TODO add DiscretionaryResource from Parent to this dictionary
-        };
-        public Rarity Rarity { get; } = Rarity.Epic;
+            RequiredResources =
+            [
+                new(ironOre, GetResourceQuantity(ironOre.Rarity)),
+                new(new MountainBauxite(), 1),
+                new(new Coal(), 1),
+            ];
+        }
     }
 }

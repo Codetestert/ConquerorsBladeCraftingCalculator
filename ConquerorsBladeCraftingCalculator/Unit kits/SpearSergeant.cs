@@ -1,20 +1,21 @@
-﻿using ConquerorsBladeCraftingCalculator.BaseClasses;
-using ConquerorsBladeCraftingCalculator.Interfaces;
+﻿using ConquerorsBladeCraftingCalculator.Interfaces;
 using ConquerorsBladeCraftingCalculator.Materials.Iron;
 using ConquerorsBladeCraftingCalculator.Materials.Leather;
 using ConquerorsBladeCraftingCalculator.Materials.Lumber;
+using ConquerorsBladeCraftingCalculator.Records;
+using Moq;
 
 namespace ConquerorsBladeCraftingCalculator.UnitKits
 {
-    public class SpearSergeant : UnitKit
+    public class SpearSergeant : EpicUnitKit
     {
-        public IReadOnlyDictionary<Material, int> RequiredMaterials { get; } = new Dictionary<Material, int>()
-        {
-            {new FinishedLeather(), 3},
-            {new CompositeWood(), 3},
-            {new PureIron(), 4}
-        };
-        public Rarity Rarity { get; } = Rarity.Epic;
-        public int ResupplyCost { get; } = 3371;
+        public override IReadOnlyList<MaterialQuantity> RequiredMaterials { get; } =
+        [
+            new(new FinishedLeather(It.IsAny<IHide>()), 3),
+            new(new CompositeWood(It.IsAny<ITimber>()), 3),
+            new(new PureIron(It.IsAny<IronOre>()), 4),
+        ];
+        public override int ResupplyCost { get; } = 3371;
     }
+
 }
