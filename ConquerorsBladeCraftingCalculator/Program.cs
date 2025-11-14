@@ -1,18 +1,21 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses;
+using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Enums;
 using ConquerorsBladeCraftingCalculator.Interfaces;
+using ConquerorsBladeCraftingCalculator.UnitKits;
 
 namespace ConquerorsBladeCraftingCalculator
 {
     public class Program(IMarketService market, ITradeColonyService tradeColony)
     {
+        private const double SalesTaxFraction = 0.1;
         private readonly IMarketService _market = market;
         private readonly ITradeColonyService _tradeColony = tradeColony;
 
         public Advice CalculateCheapestAdvice(UnitKit unitKit)
         {
             var marketPrice = _market.GetPrice(unitKit);
-            var tradingpostPrice = _tradeColony.GetPrice(unitKit); //TODO add calculations
+            var tradingpostPrice = _tradeColony.GetPrice(unitKit); //TODO use in calculations
             var craftingCostMaterials = CalculateWithBuyingMaterials(unitKit);
             var craftingCostResources = CalculateWithBuyingResourcesAndRefiningMaterials(unitKit);
 
@@ -32,11 +35,45 @@ namespace ConquerorsBladeCraftingCalculator
             return Advice.BuyResources;
         }
 
-        public int CalculateCheapestPrice(UnitKit unitKit)
+        private int CalculateWithBuyingMaterials(UnitKit unitKit)
+        {
+            var craftingCost = unitKit.CraftingCost;
+            foreach (var materialQuantity in unitKit.RequiredMaterials)
+            {
+                var materialCost = _market.GetPrice(materialQuantity.Material, materialQuantity.Quantity);
+                craftingCost += materialCost.Value;
+                Console.WriteLine($"{materialQuantity.Quantity} {materialQuantity.Material} for {materialCost} silver");
+            }
+
+            Console.WriteLine($"{craftingCost} silver to craft it yourself");
+            return craftingCost;
+        }
+
+        private int CalculateWithBuyingResourcesAndRefiningMaterials(UnitKit unitKit)
+        {
+            var craftingCost = unitKit.CraftingCost;
+            foreach (var materialQuantity in unitKit.RequiredMaterials)
+            {
+                var materialRefiningCost = materialQuantity.Material.RefiningCost * materialQuantity.Quantity;
+                craftingCost += materialRefiningCost;
+                Console.WriteLine($"{materialRefiningCost} silver to refine {materialQuantity.Quantity} {materialQuantity.Material}");
+                foreach (var resourceQuantity in materialQuantity.Material.RequiredResources)
+                {
+                    var resourceCost = _market.GetPrice((Resource)resourceQuantity.Resource, resourceQuantity.Quantity);
+                    craftingCost += resourceCost.Value;
+                    Console.WriteLine($"{resourceQuantity.Quantity} {resourceQuantity.Resource} for {resourceCost} silver");
+                }
+            }
+
+            Console.WriteLine($"{craftingCost} silver to refine materials then craft it yourself");
+            return craftingCost;
+        }
+
+        public int CalculateCheapestPriceToCraft(UnitKit unitKit)
         {
             var craftingCost = unitKit.CraftingCost;
             //calculate cost of buying materials or buying resources and crafting the material
-            foreach (var materialQuantity in unitKit.RequiredMaterials) //TODO DRY
+            foreach (var materialQuantity in unitKit.RequiredMaterials)
             {
                 //for each quantity of material, see if its cheaper to buy or craft
                 //for (int i = 0; i < materialQuantity.Quantity; i++)
@@ -46,9 +83,9 @@ namespace ConquerorsBladeCraftingCalculator
                 var materialCost = _market.GetPrice(materialQuantity.Material, materialQuantity.Quantity);
                 var materialRefiningCost = materialQuantity.Material.RefiningCost * materialQuantity.Quantity;
 
-                foreach (var resourceQuantity in materialQuantity.Material.RequiredResources) //TODO DRY
+                foreach (var resourceQuantity in materialQuantity.Material.RequiredResources)
                 {
-                    var resourceCost = _market.GetPrice(resourceQuantity.Resource, resourceQuantity.Quantity);
+                    var resourceCost = _market.GetPrice((Resource)resourceQuantity.Resource, resourceQuantity.Quantity);
                     //TODO compare resourceCost for IExotics from openworld trade posts _tradepost.GetPrice(resourceQuantity.Resource);
                     materialRefiningCost += resourceCost.Value;
                 }
@@ -69,10 +106,10 @@ namespace ConquerorsBladeCraftingCalculator
             if (tradeColonyPrice < cheapestPrice)
             {
                 Console.WriteLine($"Buying {unitKit.GetType().Name} at trade colony for {tradeColonyPrice} silver. Is cheaper than to buy it for {cheapestPrice} silver at market");
-                cheapestPrice = tradeColonyPrice;                
+                cheapestPrice = tradeColonyPrice;
             }
             if (craftingCost < cheapestPrice)
-            {                
+            {
                 Console.WriteLine($"Crafting {unitKit.GetType().Name} for {craftingCost} silver. Is cheaper than to buy it for {cheapestPrice} silver");
                 cheapestPrice = craftingCost;
             }
@@ -80,46 +117,16 @@ namespace ConquerorsBladeCraftingCalculator
             return cheapestPrice;
         }
 
-        private int CalculateWithBuyingResourcesAndRefiningMaterials(UnitKit unitKit)
+        public void Main()
         {
-            var craftingCost = unitKit.CraftingCost;
-            foreach (var materialQuantity in unitKit.RequiredMaterials)
-            {
-                var materialRefiningCost = materialQuantity.Material.RefiningCost * materialQuantity.Quantity;
-                craftingCost += materialRefiningCost;
-                Console.WriteLine($"{materialRefiningCost} silver to refine {materialQuantity.Quantity} {materialQuantity.Material}");
-                foreach (var resourceQuantity in materialQuantity.Material.RequiredResources)
-                {
-                    var resourceCost = _market.GetPrice(resourceQuantity.Resource, resourceQuantity.Quantity);
-                    craftingCost += resourceCost.Value;
-                    Console.WriteLine($"{resourceQuantity.Quantity} {resourceQuantity.Resource} for {resourceCost} silver");
-                }
-            }
+            var unitKit = new SpearSergeant();
+            var cheapestPrice = CalculateCheapestPriceToCraft(unitKit);
+            var marketPrice = _market.GetPrice(unitKit);
+            var profit = (marketPrice.Value - cheapestPrice) * (1-SalesTaxFraction);
+            Console.WriteLine($"profit: {profit}");
 
-            Console.WriteLine($"{craftingCost} silver to refine materials then craft it yourself");
-            return craftingCost;
-        }
-
-        private int CalculateWithBuyingMaterials(UnitKit unitKit)
-        {
-            var craftingCost = unitKit.CraftingCost;
-            foreach (var materialQuantity in unitKit.RequiredMaterials)
-            {
-                var materialCost = _market.GetPrice(materialQuantity.Material, materialQuantity.Quantity);
-                craftingCost += materialCost.Value;
-                Console.WriteLine($"{materialQuantity.Quantity} {materialQuantity.Material} for {materialCost} silver");
-            }
-
-            Console.WriteLine($"{craftingCost} silver to craft it yourself");
-            return craftingCost;
-        }
-
-        public static void Main()
-        {   //TaxFraction = 0,1;
             //TODO make method CalculateProfit(ITradable) => ITradable.SalePrice * (1-TaxFraction) * ITradable.Quantity  
             //Unit sale price can't be higher than max value or lower than min value.
-
-            //Can also add buying cost, deducts that from profit and returns profit figure and percentage based on investment.resource cost if provided and material costs if provided, crafting costs for every step in process.
         }
     }
 }

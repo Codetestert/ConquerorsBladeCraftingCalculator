@@ -1,8 +1,8 @@
-﻿using ConquerorsBladeCraftingCalculator.Interfaces;
+﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 
 namespace ConquerorsBladeCraftingCalculator.Records
 {
-    public sealed record ResourceQuantity(IResource Resource, int Quantity)
+    public sealed record ResourceQuantity(Resource Resource, int Quantity)
     {
         //public ResourceQuantity(IResource Resource, int Quantity)
         //{

@@ -1,18 +1,15 @@
 ﻿using ConquerorsBladeCraftingCalculator.BaseClasses.Materials;
+using ConquerorsBladeCraftingCalculator.BaseClasses.Resources;
 using ConquerorsBladeCraftingCalculator.Interfaces;
 using ConquerorsBladeCraftingCalculator.Records;
 
 namespace ConquerorsBladeCraftingCalculator.Materials.Leather
 {
-    public class TannedHide : UncommonMaterial
+    public class TannedHide(IHide hide) : UncommonMaterial
     {
-        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; }
-        public TannedHide(IHide hide)
-        {
-            RequiredResources =
+        public override IReadOnlyList<ResourceQuantity> RequiredResources { get; } =
             [
-                new(hide, GetResourceQuantity(hide.Rarity)),
+                new((Resource) hide, GetResourceQuantity(hide.Rarity)),
             ];
-        }
     }
 }
